@@ -4,6 +4,17 @@ StudyTrack adalah aplikasi web dashboard produktivitas belajar untuk mahasiswa y
 
 ---
 
+## 🐳 Docker Hub Repository
+- **Docker Hub Public Repo**: [https://hub.docker.com/r/israaulia/studytrack](https://hub.docker.com/r/israaulia/studytrack)
+- **Docker Image Tag**: `israaulia/studytrack:v1-UTS`
+- **Cara Menjalankan Container**:
+  ```bash
+  docker pull israaulia/studytrack:v1-UTS
+  docker run -p 3000:3000 israaulia/studytrack:v1-UTS
+  ```
+
+---
+
 ## 👥 Pembagian Tugas Tim (Estafet)
 
 Proyek ini dikembangkan secara bergantian sesuai urutan: **Ariq → Isra → Riyadh**.
