@@ -30,9 +30,9 @@ export function ScheduleCard({
         <div
           style={{
             padding: 16,
-            background: "rgba(99,102,241,0.1)",
+            background: "#eef2ff",
             borderRadius: 12,
-            border: "1px solid rgba(99,102,241,0.2)",
+            border: "1px solid #c7d2fe",
             marginBottom: 12,
           }}
         >
@@ -49,7 +49,7 @@ export function ScheduleCard({
               <p
                 style={{
                   fontWeight: 700,
-                  color: "var(--color-primary-light)",
+                  color: "var(--color-primary-dark)",
                   fontSize: 15,
                 }}
               >
@@ -63,11 +63,12 @@ export function ScheduleCard({
           </div>
           <div
             style={{
-              marginTop: 8,
+              marginTop: 10,
               display: "inline-flex",
               alignItems: "center",
               gap: 6,
-              background: "rgba(16,185,129,0.15)",
+              background: "#ecfdf5",
+              border: "1px solid #a7f3d0",
               padding: "3px 10px",
               borderRadius: 999,
             }}
@@ -79,10 +80,9 @@ export function ScheduleCard({
                 borderRadius: "50%",
                 background: "#10b981",
                 display: "inline-block",
-                animation: "pulse 2s infinite",
               }}
             />
-            <span style={{ fontSize: 12, color: "#34d399", fontWeight: 600 }}>
+            <span style={{ fontSize: 11, color: "#047857", fontWeight: 600 }}>
               Sedang Berlangsung
             </span>
           </div>
@@ -105,12 +105,13 @@ export function ScheduleCard({
         <div
           style={{
             padding: 12,
-            background: "var(--bg-input)",
+            background: "#f8fafc",
+            border: "1px solid var(--border-subtle)",
             borderRadius: 10,
             marginBottom: 12,
           }}
         >
-          <p style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 4 }}>
+          <p style={{ fontSize: 11, color: "var(--text-muted)", marginBottom: 4, fontWeight: 500 }}>
             Berikutnya:
           </p>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -119,7 +120,7 @@ export function ScheduleCard({
               style={{ backgroundColor: nextCourse.color }}
             />
             <div>
-              <p style={{ fontWeight: 600, fontSize: 14 }}>{nextCourse.name}</p>
+              <p style={{ fontWeight: 600, fontSize: 13 }}>{nextCourse.name}</p>
               <p style={{ fontSize: 12, color: "var(--text-secondary)" }}>
                 {nextCourse.startTime} · {nextCourse.room}
               </p>

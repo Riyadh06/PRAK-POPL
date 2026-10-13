@@ -137,7 +137,7 @@ export function StudyHoursBarChart({
 
             <CartesianGrid
               strokeDasharray="3 3"
-              stroke="rgba(255, 255, 255, 0.06)"
+              stroke="#e2e8f0"
               vertical={false}
             />
 
@@ -146,7 +146,7 @@ export function StudyHoursBarChart({
               stroke="#64748b"
               fontSize={12}
               tickLine={false}
-              axisLine={{ stroke: "rgba(255, 255, 255, 0.1)" }}
+              axisLine={{ stroke: "#e2e8f0" }}
             />
 
             <YAxis
@@ -158,18 +158,18 @@ export function StudyHoursBarChart({
             />
 
             <Tooltip
-              cursor={{ fill: "rgba(255, 255, 255, 0.04)" }}
+              cursor={{ fill: "rgba(0, 0, 0, 0.03)" }}
               content={({ active, payload }) => {
                 if (active && payload && payload.length) {
                   const item = payload[0].payload as ChartItem;
                   return (
                     <div
                       style={{
-                        background: "#181829",
-                        border: "1px solid rgba(255, 255, 255, 0.15)",
+                        background: "#ffffff",
+                        border: "1px solid #e2e8f0",
                         borderRadius: 10,
                         padding: "10px 14px",
-                        boxShadow: "0 8px 24px rgba(0,0,0,0.5)",
+                        boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1)",
                       }}
                     >
                       <p

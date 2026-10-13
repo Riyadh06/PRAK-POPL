@@ -95,11 +95,11 @@ export function TaskCompletionPieChart({
                   return (
                     <div
                       style={{
-                        background: "#181829",
-                        border: "1px solid rgba(255, 255, 255, 0.15)",
-                        borderRadius: 10,
+                        background: "#ffffff",
+                        border: "1px solid #e2e8f0",
+                        borderRadius: 8,
                         padding: "8px 12px",
-                        boxShadow: "0 8px 24px rgba(0,0,0,0.5)",
+                        boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1)",
                       }}
                     >
                       <p style={{ fontSize: 13, fontWeight: 600, color: item.payload.color }}>

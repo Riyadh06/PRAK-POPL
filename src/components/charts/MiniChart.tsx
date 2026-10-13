@@ -93,22 +93,23 @@ export function MiniChart({
             </defs>
             {showTooltip && (
               <Tooltip
-                cursor={{ fill: "rgba(255, 255, 255, 0.05)" }}
+                cursor={{ fill: "rgba(0, 0, 0, 0.04)" }}
                 content={({ active, payload }) => {
                   if (active && payload && payload.length) {
                     const item = payload[0].payload as { day: string; minutes: number };
                     return (
                       <div
                         style={{
-                          background: "#181829",
-                          border: "1px solid rgba(255, 255, 255, 0.15)",
+                          background: "#ffffff",
+                          border: "1px solid #e2e8f0",
                           borderRadius: 6,
                           padding: "4px 8px",
                           fontSize: 11,
+                          boxShadow: "0 2px 4px rgba(0,0,0,0.06)",
                         }}
                       >
                         <span style={{ color: "var(--text-muted)" }}>{item.day}: </span>
-                        <strong style={{ color: "var(--color-primary-light)" }}>
+                        <strong style={{ color: "var(--color-primary)" }}>
                           {item.minutes}m
                         </strong>
                       </div>
@@ -137,7 +138,7 @@ export function MiniChart({
 
   const pieData =
     total === 0
-      ? [{ name: "Kosong", value: 1, color: "rgba(255, 255, 255, 0.08)" }]
+      ? [{ name: "Kosong", value: 1, color: "#e2e8f0" }]
       : [
           { name: "Selesai", value: done, color: "#10b981" },
           { name: "Belum", value: pending, color: "#6366f1" },
@@ -164,11 +165,12 @@ export function MiniChart({
                   return (
                     <div
                       style={{
-                        background: "#181829",
-                        border: "1px solid rgba(255, 255, 255, 0.15)",
+                        background: "#ffffff",
+                        border: "1px solid #e2e8f0",
                         borderRadius: 6,
                         padding: "4px 8px",
                         fontSize: 11,
+                        boxShadow: "0 2px 4px rgba(0,0,0,0.06)",
                       }}
                     >
                       <strong style={{ color: item.payload.color }}>

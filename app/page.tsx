@@ -48,19 +48,19 @@ export default function DashboardPage() {
 
   useEffect(() => {
     const hour = new Date().getHours();
-    let title = "Selamat Datang di StudyTrack 🎓";
+    let title = "Halo, Mahasiswa! 👋";
     if (hour >= 4 && hour < 11) {
-      title = "Selamat Pagi, Sobat Belajar! 🌅";
+      title = "Selamat pagi! ☀️";
     } else if (hour >= 11 && hour < 15) {
-      title = "Selamat Siang, Tetap Semangat! ☀️";
+      title = "Selamat siang! 🌤️";
     } else if (hour >= 15 && hour < 18) {
-      title = "Selamat Sore, Waktunya Review! 🌇";
+      title = "Selamat sore! 🌇";
     } else {
-      title = "Selamat Malam, Mode Fokus Siap! 🌙";
+      title = "Selamat malam! 🌙";
     }
     setGreeting({
       title,
-      subtitle: "Kelola perkuliahan, tuntaskan target tugas, dan bangun kebiasaan belajar konsisten.",
+      subtitle: "Berikut ringkasan jadwal kuliah, progres tugas, dan sesi belajarmu hari ini.",
     });
     setDayName(DAY_NAMES[new Date().getDay()]);
   }, []);
@@ -74,23 +74,42 @@ export default function DashboardPage() {
     <div>
       <TopBar
         title="Dashboard"
-        subtitle={`Selamat datang di StudyTrack 🎓 — ${dayName}`}
+        subtitle={`Ringkasan aktivitas belajar — ${dayName || "Hari Ini"}`}
       />
 
       <div className="page-container">
-        {/* ── Hero Greeting Banner Interaktif ─────────────────────────────── */}
-        <div className="hero-banner">
+        {/* ── Greeting Ringkas & Natural ──────────────────────────────────── */}
+        <div
+          className="card"
+          style={{
+            marginBottom: 24,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
           <div>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 8 }}>
-              <span className="live-badge" style={{ background: "rgba(99, 102, 241, 0.15)", borderColor: "rgba(99, 102, 241, 0.3)", color: "var(--color-primary-light)" }}>
-                ✨ Ruang Produktivitas Mahasiswa
-              </span>
-            </div>
-            <h2 className="hero-title">{greeting.title}</h2>
-            <p className="hero-desc">{greeting.subtitle}</p>
+            <h2 style={{ fontSize: 18, fontWeight: 700, color: "var(--text-primary)" }}>
+              {greeting.title}
+            </h2>
+            <p style={{ fontSize: 13, color: "var(--text-secondary)", marginTop: 4 }}>
+              {greeting.subtitle}
+            </p>
           </div>
-          <div className="hero-icon-container">
-            🎯
+          <div>
+            <span
+              style={{
+                fontSize: 12,
+                fontWeight: 500,
+                color: "var(--text-secondary)",
+                background: "#f1f5f9",
+                padding: "6px 12px",
+                borderRadius: "var(--radius-md)",
+                border: "1px solid var(--border-subtle)",
+              }}
+            >
+              📅 {dayName || "Hari Ini"}
+            </span>
           </div>
         </div>
 
@@ -184,20 +203,21 @@ export default function DashboardPage() {
                     display: "flex",
                     alignItems: "center",
                     gap: 14,
-                    padding: "14px 18px",
-                    background: "var(--bg-input)",
-                    borderRadius: 12,
+                    padding: "12px 16px",
+                    background: "#f8fafc",
+                    border: "1px solid var(--border-subtle)",
+                    borderRadius: "var(--radius-md)",
                     borderLeft: `4px solid ${course.color}`,
-                    transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+                    transition: "all 0.15s ease",
                     cursor: "default",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "translateX(4px)";
-                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
+                    e.currentTarget.style.background = "#ffffff";
+                    e.currentTarget.style.boxShadow = "var(--shadow-card)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = "";
-                    e.currentTarget.style.background = "var(--bg-input)";
+                    e.currentTarget.style.background = "#f8fafc";
+                    e.currentTarget.style.boxShadow = "";
                   }}
                 >
                   <span
