@@ -104,10 +104,24 @@ npx tsc --noEmit
 
 ---
 
-## 🌿 Struktur Percabangan Git (Git Flow)
+## 🌿 Aturan Git, Branch, & Commit
 
-- `master` / `main`: Branch rilis final
+### 1. Format Penamaan Branch
+- **Fitur baru**: `feat_{nama_fitur}/{tanggal}` (contoh: `feat_authentikasi/19-03-2025` atau `feat_jadwal_kuliah/13-10-2026`)
+- **Perbaikan bug**: `fix_{nama_fitur}/{tanggal}`
+
+### 2. Format Commit Message
+- `feat: pesan deskripsi` → untuk penambahan/peningkatan fitur.
+- `fix: pesan deskripsi` → untuk perbaikan bug.
+- `style: pesan deskripsi` → untuk styling UI.
+- `chore: pesan deskripsi` → perubahan non-fungsional (config, dokumentasi, dll).
+
+### 3. Struktur Branch Utama
+- `main`: Branch rilis final
 - `develop`: Branch integrasi utama (semua feature di-merge ke sini)
-- `chore/project-setup`: Setup awal dan fondasi arsitektur (Ariq)
-- `feature/pomodoro`: Pengerjaan Pomodoro Timer (Isra)
-- `feature/progress`: Pengerjaan Grafik Recharts (Riyadh)
+- `feat_arsitektur_core/13-10-2026`: Setup arsitektur core OOP & layout (Ariq)
+- `feat_jadwal_kuliah/13-10-2026`: Modul jadwal kuliah & tabel mingguan (Ariq)
+- `feat_manajemen_tugas/13-10-2026`: Modul manajemen tugas & filter/sorting (Ariq)
+- `feat_dashboard_ui/13-10-2026`: Styling dashboard utama & placeholder modul (Ariq)
+- `feat_pomodoro/{tanggal}`: Pengerjaan modul Pomodoro timer (Isra)
+- `feat_progress/{tanggal}`: Pengerjaan grafik Recharts & statistik (Riyadh)

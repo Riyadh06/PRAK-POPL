@@ -137,21 +137,25 @@ studytrack:pomodoro-settings → PomodoroSettings
 
 ---
 
-## 📦 Perintah Git
+## 📦 Aturan Git & Instruksi untuk Isra
+
+### Format Penamaan Branch & Commit
+- **Fitur Baru**: `feat_{nama_fitur}/{tanggal}` (contoh: `feat_pomodoro/14-10-2026`)
+- **Perbaikan Bug**: `fix_{nama_fitur}/{tanggal}`
+- **Format Commit**:
+  - `feat: pesan deskripsi` → penambahan fitur
+  - `fix: pesan deskripsi` → perbaikan bug
+  - `style: pesan deskripsi` → styling UI
+  - `chore: pesan deskripsi` → perubahan non-fungsional / config / dokumentasi
 
 ```bash
 # Pastikan di folder studytrack
 cd "c:\MATERI KULIAH\SEMESTER 5\POPL\PRAK POPL\PROJECT\studytrack"
 
-# Setup remote (setelah buat repo)
-git remote add origin <URL_REPO>
-git push -u origin develop
-git push -u origin chore/project-setup
-
-# Isra: mulai dari sini
+# Isra: mulai dari develop dan buat branch fitur sesuai aturan
 git checkout develop
 git pull origin develop
-git checkout -b feature/pomodoro
+git checkout -b feat_pomodoro/14-10-2026
 ```
 
 ---
