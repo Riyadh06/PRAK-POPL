@@ -38,24 +38,50 @@ export class StatsService {
   /**
    * Mengumpulkan semua data yang dibutuhkan Dashboard dalam satu panggilan.
    * Dipakai oleh useStats hook dan halaman dashboard.
+   * PATTERN: Facade
    */
-  public getDashboardSummary(): DashboardSummary {
-    const now = new Date();
+  public getDashboardSummary(nowDate?: Date): DashboardSummary {
+    if (typeof window === "undefined" && !nowDate) {
+      const emptyStats = { done: 0, total: 0 };
+      return {
+        todaySchedule: [],
+        currentCourse: null,
+        nextCourse: null,
+        taskStats: emptyStats,
+        taskCompletion: emptyStats,
+        todayStudyMinutes: 0,
+        todayMinutes: 0,
+        weeklyMinutes: [],
+        nearestDeadlineTasks: [],
+        nearestTasks: [],
+      };
+    }
+
+    const now = nowDate ?? new Date();
+    const taskCompletion = this.taskService.getCompletionStats();
+    const todayMinutes = this.pomodoroService.getTodayTotalMinutes(now);
+    const weeklyMinutes = this.pomodoroService.getWeeklyMinutes(now);
+    const nearestDeadlineTasks = this.taskService.getNearestDeadline(5);
+
     return {
       todaySchedule: this.scheduleService.getToday(now),
       currentCourse: this.scheduleService.getCurrentCourse(now),
       nextCourse: this.scheduleService.getNextCourse(now),
-      taskStats: this.taskService.getCompletionStats(),
-      todayStudyMinutes: this.pomodoroService.getTodayTotalMinutes(),
-      nearestDeadlineTasks: this.taskService.getNearestDeadline(3),
+      taskStats: taskCompletion,
+      taskCompletion,
+      todayStudyMinutes: todayMinutes,
+      todayMinutes,
+      weeklyMinutes,
+      nearestDeadlineTasks,
+      nearestTasks: nearestDeadlineTasks,
     };
   }
 
   /**
    * Data jam belajar mingguan untuk grafik Recharts.
    */
-  public getWeeklyStudyHours(): WeeklyStudyData[] {
-    return this.pomodoroService.getWeeklyMinutes();
+  public getWeeklyStudyHours(nowDate?: Date): WeeklyStudyData[] {
+    return this.pomodoroService.getWeeklyMinutes(nowDate);
   }
 
   /**

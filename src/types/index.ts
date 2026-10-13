@@ -67,14 +67,18 @@ export interface PomodoroSettings {
 
 // ─── Tipe Utilitas ───────────────────────────────────────────────────────────
 
-/** Ringkasan statistik untuk dashboard */
+/** Ringkasan statistik untuk dashboard (StatsService Facade) */
 export interface DashboardSummary {
   todaySchedule: Course[];
   currentCourse: Course | null;
   nextCourse: Course | null;
   taskStats: { done: number; total: number };
+  taskCompletion: { done: number; total: number };
   todayStudyMinutes: number;
+  todayMinutes: number;
+  weeklyMinutes: WeeklyStudyData[];
   nearestDeadlineTasks: Task[];
+  nearestTasks: Task[];
 }
 
 /** Data studi mingguan untuk grafik */
