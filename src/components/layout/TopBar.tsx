@@ -42,8 +42,14 @@ export function TopBar({ title, subtitle }: TopBarProps) {
         {subtitle && <p className="topbar-subtitle">{subtitle}</p>}
       </div>
       <div className="topbar-right">
-        <div className="topbar-time">{timeStr}</div>
-        <div className="topbar-date">{dateStr}</div>
+        <div className="live-badge">
+          <span className="pulse-dot" />
+          <span>Real-time</span>
+        </div>
+        <div className="topbar-clock-box">
+          <div className="topbar-time">{timeStr}</div>
+          <div className="topbar-date">{dateStr}</div>
+        </div>
       </div>
     </header>
   );

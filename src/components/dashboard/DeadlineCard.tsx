@@ -75,10 +75,20 @@ export function DeadlineCard({ tasks, isOverdue, isDueSoon }: DeadlineCardProps)
                   display: "flex",
                   alignItems: "center",
                   gap: 12,
-                  padding: "10px 12px",
+                  padding: "12px 14px",
                   background: "var(--bg-input)",
                   borderRadius: 10,
-                  borderLeft: `3px solid ${borderColor}`,
+                  borderLeft: `4px solid ${borderColor}`,
+                  transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+                  cursor: "default",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateX(4px)";
+                  e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "";
+                  e.currentTarget.style.background = "var(--bg-input)";
                 }}
               >
                 <div style={{ flex: 1, minWidth: 0 }}>

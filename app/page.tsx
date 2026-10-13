@@ -39,10 +39,29 @@ export default function DashboardPage() {
   const { isOverdue, isDueSoon } = useTasks();
   const { todayMinutes } = usePomodoro();
 
-  // Nama hari diinisialisasi di useEffect untuk SSR safety
+  // Nama hari & greeting diinisialisasi di useEffect untuk SSR safety
   const [dayName, setDayName] = useState<string>("");
+  const [greeting, setGreeting] = useState<{ title: string; subtitle: string }>({
+    title: "Selamat Datang di StudyTrack 🎓",
+    subtitle: "Pantau jadwal, selesaikan tugas, dan bangun sesi fokus produktif.",
+  });
 
   useEffect(() => {
+    const hour = new Date().getHours();
+    let title = "Selamat Datang di StudyTrack 🎓";
+    if (hour >= 4 && hour < 11) {
+      title = "Selamat Pagi, Sobat Belajar! 🌅";
+    } else if (hour >= 11 && hour < 15) {
+      title = "Selamat Siang, Tetap Semangat! ☀️";
+    } else if (hour >= 15 && hour < 18) {
+      title = "Selamat Sore, Waktunya Review! 🌇";
+    } else {
+      title = "Selamat Malam, Mode Fokus Siap! 🌙";
+    }
+    setGreeting({
+      title,
+      subtitle: "Kelola perkuliahan, tuntaskan target tugas, dan bangun kebiasaan belajar konsisten.",
+    });
     setDayName(DAY_NAMES[new Date().getDay()]);
   }, []);
 
@@ -59,32 +78,48 @@ export default function DashboardPage() {
       />
 
       <div className="page-container">
+        {/* ── Hero Greeting Banner Interaktif ─────────────────────────────── */}
+        <div className="hero-banner">
+          <div>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 8 }}>
+              <span className="live-badge" style={{ background: "rgba(99, 102, 241, 0.15)", borderColor: "rgba(99, 102, 241, 0.3)", color: "var(--color-primary-light)" }}>
+                ✨ Ruang Produktivitas Mahasiswa
+              </span>
+            </div>
+            <h2 className="hero-title">{greeting.title}</h2>
+            <p className="hero-desc">{greeting.subtitle}</p>
+          </div>
+          <div className="hero-icon-container">
+            🎯
+          </div>
+        </div>
+
         {/* ── Kartu Statistik Ringkas ─────────────────────────────────────── */}
         <div className="grid-4" style={{ marginBottom: 28 }}>
           <div className="stat-card stat-card--primary">
             <span className="stat-label">Jadwal Hari Ini</span>
             <span className="stat-value">{summary.todaySchedule.length}</span>
-            <span className="stat-sub">mata kuliah</span>
+            <span className="stat-sub">mata kuliah terdaftar</span>
           </div>
 
           <div className="stat-card stat-card--success">
             <span className="stat-label">Tugas Selesai</span>
             <span className="stat-value">{summary.taskStats.done}</span>
-            <span className="stat-sub">dari {summary.taskStats.total} tugas</span>
+            <span className="stat-sub">dari {summary.taskStats.total} total tugas</span>
           </div>
 
           <div className="stat-card stat-card--warning">
             <span className="stat-label">Belajar Hari Ini</span>
             {/* todayMinutes: data real-time dari usePomodoro (State Pattern) */}
             <span className="stat-value">{todayMinutes}</span>
-            <span className="stat-sub">menit fokus</span>
+            <span className="stat-sub">menit sesi Pomodoro</span>
           </div>
 
           <div className="stat-card stat-card--danger">
             <span className="stat-label">Progres Tugas</span>
             <span className="stat-value">{completionPct}%</span>
             <span className="stat-sub">
-              <div className="progress-bar" style={{ marginTop: 6 }}>
+              <div className="progress-bar" style={{ marginTop: 8 }}>
                 <div
                   className="progress-fill"
                   style={{ width: `${completionPct}%`, transition: "width 0.6s ease" }}
@@ -138,7 +173,7 @@ export default function DashboardPage() {
             <div className="empty-state" style={{ padding: "30px 0" }}>
               <span className="empty-icon">😴</span>
               <p className="empty-title">Tidak ada kuliah hari ini</p>
-              <p className="empty-desc">Nikmati hari bebas atau belajar mandiri!</p>
+              <p className="empty-desc">Nikmati hari bebas atau gunakan untuk fokus belajar mandiri!</p>
             </div>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -149,20 +184,30 @@ export default function DashboardPage() {
                     display: "flex",
                     alignItems: "center",
                     gap: 14,
-                    padding: "12px 16px",
+                    padding: "14px 18px",
                     background: "var(--bg-input)",
-                    borderRadius: 10,
+                    borderRadius: 12,
                     borderLeft: `4px solid ${course.color}`,
+                    transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+                    cursor: "default",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "translateX(4px)";
+                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "";
+                    e.currentTarget.style.background = "var(--bg-input)";
                   }}
                 >
                   <span
                     className="color-dot"
-                    style={{ backgroundColor: course.color, width: 10, height: 10 }}
+                    style={{ backgroundColor: course.color, width: 12, height: 12 }}
                   />
                   <div style={{ flex: 1 }}>
-                    <p style={{ fontWeight: 600, fontSize: 14 }}>{course.name}</p>
-                    <p style={{ fontSize: 12, color: "var(--text-secondary)" }}>
-                      {course.startTime} – {course.endTime} · {course.room}
+                    <p style={{ fontWeight: 700, fontSize: 14 }}>{course.name}</p>
+                    <p style={{ fontSize: 12, color: "var(--text-secondary)", marginTop: 2 }}>
+                      🕐 {course.startTime} – {course.endTime} · 📍 {course.room}
                     </p>
                   </div>
                 </div>

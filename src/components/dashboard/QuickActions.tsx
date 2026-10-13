@@ -61,30 +61,49 @@ export function QuickActions() {
               flexDirection: "column",
               alignItems: "center",
               gap: 8,
-              padding: "18px 12px",
+              padding: "20px 14px",
               background: action.accent,
               border: `1px solid ${action.border}`,
               borderRadius: "var(--radius-md)",
               textDecoration: "none",
               color: "var(--text-primary)",
-              transition: "all var(--transition-fast)",
+              transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
               cursor: "pointer",
               textAlign: "center",
+              position: "relative",
+              overflow: "hidden",
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform =
-                "translateY(-2px)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                "var(--shadow-card)";
+              const el = e.currentTarget as HTMLAnchorElement;
+              el.style.transform = "translateY(-4px)";
+              el.style.boxShadow = `0 12px 24px -6px ${action.border}`;
+              el.style.borderColor = "rgba(255, 255, 255, 0.3)";
+              const iconEl = el.querySelector(".action-icon") as HTMLElement;
+              if (iconEl) iconEl.style.transform = "scale(1.2) rotate(6deg)";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform = "";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "";
+              const el = e.currentTarget as HTMLAnchorElement;
+              el.style.transform = "";
+              el.style.boxShadow = "";
+              el.style.borderColor = action.border;
+              const iconEl = el.querySelector(".action-icon") as HTMLElement;
+              if (iconEl) iconEl.style.transform = "";
             }}
           >
-            <span style={{ fontSize: 28 }}>{action.icon}</span>
-            <span style={{ fontWeight: 600, fontSize: 13 }}>{action.label}</span>
-            <span style={{ fontSize: 11, color: "var(--text-muted)" }}>
+            <span
+              className="action-icon"
+              style={{
+                fontSize: 32,
+                transition: "transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
+                display: "inline-block",
+              }}
+            >
+              {action.icon}
+            </span>
+            <span style={{ fontWeight: 700, fontSize: 14, letterSpacing: "-0.2px" }}>
+              {action.label}
+            </span>
+            <span style={{ fontSize: 11, color: "var(--text-secondary)", lineHeight: 1.3 }}>
               {action.desc}
             </span>
           </Link>

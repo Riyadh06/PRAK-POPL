@@ -43,8 +43,44 @@ export function Sidebar() {
           );
         })}
       </nav>
-      <div className="sidebar-footer">
-        <p className="sidebar-footer-text">© 2025 StudyTrack</p>
+      <div className="sidebar-footer" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            padding: "8px 10px",
+            background: "rgba(255, 255, 255, 0.04)",
+            borderRadius: "var(--radius-md)",
+            border: "1px solid var(--border-subtle)",
+          }}
+        >
+          <div
+            style={{
+              width: 32,
+              height: 32,
+              borderRadius: "50%",
+              background: "linear-gradient(135deg, #6366f1, #06b6d4)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 16,
+            }}
+          >
+            🎓
+          </div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <p style={{ fontSize: 12, fontWeight: 700, color: "var(--text-primary)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+              Mahasiswa
+            </p>
+            <p style={{ fontSize: 10, color: "#34d399", fontWeight: 600 }}>
+              ● Mode Produktif
+            </p>
+          </div>
+        </div>
+        <p className="sidebar-footer-text" style={{ textAlign: "center" }}>
+          StudyTrack v1.0.0
+        </p>
       </div>
     </aside>
   );
