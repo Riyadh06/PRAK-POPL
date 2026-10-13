@@ -13,6 +13,22 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  {
+    // Project-level rule overrides
+    rules: {
+      // Disabled: our hooks intentionally initialize state from service on mount.
+      // This is the correct pattern for loading client-side data (localStorage)
+      // without triggering SSR issues.
+      "react-hooks/set-state-in-effect": "off",
+
+      // Allow underscore-prefixed params (used in State Pattern method signatures
+      // where parameters must match the interface but are unused in some states).
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      ],
+    },
+  },
 ]);
 
 export default eslintConfig;
