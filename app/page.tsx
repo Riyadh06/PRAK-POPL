@@ -6,6 +6,7 @@
  * statistik tugas, total belajar, dan tugas deadline terdekat.
  */
 
+import { useState, useEffect } from "react";
 import { TopBar } from "@/components/layout/TopBar";
 import { useStats } from "@/hooks/useStats";
 import { useSchedule } from "@/hooks/useSchedule";
@@ -17,6 +18,11 @@ export default function DashboardPage() {
   const { summary } = useStats();
   const { currentCourse, nextCourse } = useSchedule();
   const { isOverdue, isDueSoon } = useTasks();
+  const [dayName, setDayName] = useState<string>("");
+
+  useEffect(() => {
+    setDayName(DAY_NAMES[new Date().getDay()]);
+  }, []);
 
   const completionPct =
     summary.taskStats.total > 0
@@ -164,8 +170,7 @@ export default function DashboardPage() {
         {/* ── Jadwal Hari Ini ── */}
         <div className="card">
           <div className="card-title">
-            📅 Jadwal Hari Ini —{" "}
-            {DAY_NAMES[new Date().getDay()]}
+            📅 Jadwal Hari Ini{dayName ? ` — ${dayName}` : ""}
           </div>
           {summary.todaySchedule.length === 0 ? (
             <div className="empty-state" style={{ padding: "30px 0" }}>

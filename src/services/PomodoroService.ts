@@ -52,8 +52,10 @@ export class PomodoroService extends BaseService<PomodoroSession> {
   // ── Statistik ─────────────────────────────────────────────────────────────
 
   /** Total menit belajar hari ini */
-  public getTodayTotalMinutes(): number {
-    const today = new Date().toISOString().split("T")[0];
+  public getTodayTotalMinutes(now?: Date): number {
+    if (typeof window === "undefined" && !now) return 0;
+    const todayDate = now ?? new Date();
+    const today = todayDate.toISOString().split("T")[0];
     return this.getAll()
       .filter((s) => s.completedAt.startsWith(today))
       .reduce((acc, s) => acc + s.durationMinutes, 0);
@@ -64,9 +66,12 @@ export class PomodoroService extends BaseService<PomodoroSession> {
    * Dipakai oleh grafik Recharts (Isra/Riyadh).
    * Selalu mengembalikan array 7 elemen (urutan hari semakin baru ke kanan).
    */
-  public getWeeklyMinutes(): WeeklyStudyData[] {
+  public getWeeklyMinutes(now?: Date): WeeklyStudyData[] {
     const result: WeeklyStudyData[] = [];
-    const today = new Date();
+    if (typeof window === "undefined" && !now) {
+      return result;
+    }
+    const today = now ?? new Date();
 
     for (let i = 6; i >= 0; i--) {
       const date = new Date(today);

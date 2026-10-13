@@ -34,7 +34,7 @@ export interface UseScheduleReturn {
 
 export function useSchedule(): UseScheduleReturn {
   const [courses, setCourses] = useState<Course[]>([]);
-  const [now, setNow] = useState<Date>(new Date());
+  const [now, setNow] = useState<Date | null>(null);
 
   // Subscribe ke perubahan data (Observer)
   useEffect(() => {
@@ -47,13 +47,14 @@ export function useSchedule(): UseScheduleReturn {
 
   // Update waktu setiap menit untuk highlight mata kuliah aktif
   useEffect(() => {
+    setNow(new Date());
     const interval = setInterval(() => setNow(new Date()), 60_000);
     return () => clearInterval(interval);
   }, []);
 
-  const todayCourses = scheduleService.getToday(now);
-  const currentCourse = scheduleService.getCurrentCourse(now);
-  const nextCourse = scheduleService.getNextCourse(now);
+  const todayCourses = now ? scheduleService.getToday(now) : [];
+  const currentCourse = now ? scheduleService.getCurrentCourse(now) : null;
+  const nextCourse = now ? scheduleService.getNextCourse(now) : null;
 
   const getCoursesByDay = useCallback((day: Course["day"]) => {
     return scheduleService.getByDay(day);

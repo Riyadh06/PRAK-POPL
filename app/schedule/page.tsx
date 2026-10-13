@@ -16,7 +16,6 @@ import { CourseForm } from "@/components/schedule/CourseForm";
 import { useSchedule } from "@/hooks/useSchedule";
 import { Course } from "@/types";
 
-export const metadata = undefined; // Metadata dari layout
 
 export default function SchedulePage() {
   const { courses, currentCourse, addCourse, updateCourse, deleteCourse } =
