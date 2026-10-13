@@ -17,17 +17,13 @@ StudyTrack adalah aplikasi web dashboard produktivitas belajar untuk mahasiswa y
 
 ## 👥 Pembagian Tugas Tim (Estafet)
 
-Proyek ini dikembangkan secara bergantian sesuai urutan: **Ariq → Isra → Riyadh**.
+Proyek ini dikembangkan secara bergantian sesuai urutan: **Riyadh → Ariq → Isra**.
 
 | Anggota | Peran & Tanggung Jawab | Status |
 |---|---|---|
-| **Ariq** | Inisialisasi Proyek, Arsitektur Core (Singleton, Repository, Factory, Strategy, Facade), Modul Jadwal Kuliah, Modul Manajemen Tugas, Base Hook & Layout | ✅ **Selesai** |
-| **Isra** | Modul Pomodoro Timer (State Pattern), Integrasi Countdown & Settings, Halaman Pomodoro, Halaman Progres & Grafik Recharts (MiniChart, BarChart, PieChart) | ✅ **Selesai** |
-| **Riyadh** | Dashboard Page (4 hook + komponen modular + MiniChart), Dokumentasi Arsitektur (UML, diagram alur), Final Integration & QA | ✅ **Selesai** |
-
-Dokumentasi serah terima:
-- Ariq → Isra: [`HANDOVER_ARIQ_TO_ISRA.md`](./HANDOVER_ARIQ_TO_ISRA.md)
-- Isra → Riyadh: [`HANDOVER_ISRA_TO_RIYADH.md`](./HANDOVER_ISRA_TO_RIYADH.md)
+| **Riyadh** | Inisialisasi Proyek, Arsitektur Core (Singleton, Repository, Factory, Strategy, Facade), Modul Jadwal Kuliah, Modul Manajemen Tugas, Base Hook & Layout | ✅ **Selesai** |
+| **Ariq** | Modul Pomodoro Timer (State Pattern), Integrasi Countdown & Settings, Halaman Pomodoro, Halaman Progres & Grafik Recharts (MiniChart, BarChart, PieChart) | ✅ **Selesai** |
+| **Isra** | Dashboard Page (4 hook + komponen modular + MiniChart), Dokumentasi Arsitektur (UML, diagram alur), Final Integration & QA | ✅ **Selesai** |
 
 ---
 
@@ -158,12 +154,12 @@ npm run build
 ### 3. Struktur Branch
 - `main`: Branch rilis final (tag `v1.0.0`)
 - `develop`: Branch integrasi utama
-- `feat_arsitektur_core/13-10-2026` — Ariq: setup core
-- `feat_jadwal_kuliah/13-10-2026` — Ariq: modul jadwal
-- `feat_manajemen_tugas/13-10-2026` — Ariq: modul tugas
-- `feat_dashboard_ui/13-10-2026` — Ariq: layout & styling
-- `feature/pomodoro` — Isra: modul Pomodoro
-- `feat_progress_charts/13-10-2026` — Isra: grafik progres
-- `feature/dashboard` — Riyadh: dashboard page
-- `docs/architecture` — Riyadh: dokumentasi arsitektur
-- `chore/final-integration` — Riyadh: integrasi & QA akhir
+- `feat_arsitektur_core/13-10-2026` — Riyadh: setup core
+- `feat_jadwal_kuliah/13-10-2026` — Riyadh: modul jadwal
+- `feat_manajemen_tugas/13-10-2026` — Riyadh: modul tugas
+- `feat_dashboard_ui/13-10-2026` — Riyadh: layout & styling
+- `feature/pomodoro` — Ariq: modul Pomodoro
+- `feat_progress_charts/13-10-2026` — Ariq: grafik progres
+- `feature/dashboard` — Isra: dashboard page
+- `docs/architecture` — Isra: dokumentasi arsitektur
+- `chore/final-integration` — Isra: integrasi & QA akhir
